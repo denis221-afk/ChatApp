@@ -5,6 +5,7 @@ import Main from "./Main/Main";
 import Register from "./Register/Register";
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +16,14 @@ class App extends Component {
   }
 
 
-  onLogin =() => {
+
+  onLogin = () => {
+    const auth = this.state.auth
     this.setState({
-      auth: true
+      auth: !auth
     })
   }
+
 
   render() {
     const auth = this.state.auth
@@ -38,7 +42,7 @@ class App extends Component {
     return(
       <BrowserRouter>
           <Routes>
-              <Route path="/" element={<Main />}/>
+              <Route path="/" element={<Main auth={() => this.onLogin} />}/>
               <Route path="*" element={<Main />}/>
           </Routes>
       </BrowserRouter>

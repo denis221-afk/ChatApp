@@ -2,35 +2,56 @@ import React, { useState } from "react";
 import Img from "../../Resuorse/LoginBg.jpg";
 import '../../Styles/Login.scss';
 import { NavLink } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { async } from "@firebase/util";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from "../..";
+
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMasenge, setError] = useState('')
+    const [errorMasenge, setError] = useState('');
+    const [userName, setName] = useState('');
+    const auth = getAuth()
 
 
     function getValue (event) {
         if(event.target.id == "Email") {
-            setEmail(event.target.value)
+            setEmail(event.target.value);
         } else if (event.target.id == "password") {
-            setPassword(event.target.value)
-        }    
+            setPassword(event.target.value);
+        } else if(event.target.id == "name"){
+            setName(event.target.value);
+        } 
     }
     
    async function setDataUsers() {
-     const auth = getAuth()    
+     const auth = getAuth() 
+     let user    
      await createUserWithEmailAndPassword(auth, email, password)
+        .then(res => addUsersToData(res.user))
         .catch(error => {
             const code = error.code;
             if(code == "auth/email-already-in-use") {
                 setError('Email уже існує')
+                return
             }
         })
 
+        updateProfile(auth.currentUser, {
+            displayName: userName
+        })
    
     }
 
+
+   async function addUsersToData(user) {
+        await setDoc(doc(db, "users",  user.uid), {
+            name: userName,
+            id: user.uid,
+            online: false
+          });
+
+    }
 
     function validation (e) {
         e.preventDefault();
@@ -57,7 +78,7 @@ const Register = () => {
             <div className="col-2 uk-position-center">
                 <form action="" onSubmit={validation}>
                 <div className="uk-margin">
-                    <input className="uk-input uk-form-success uk-width-1-1" type="text" placeholder="Name" />
+                    <input className="uk-input uk-form-success uk-width-1-1" type="text" placeholder="Name"  id="name" value={userName} onChange={getValue}/>
                 </div>
                 <div className="uk-margin">
                     <input className="uk-input uk-form-success uk-width-1-1" type="text" placeholder="Email" id="Email" value={email} onChange={getValue}/>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './Components/App';
 import './Styles/index.scss';
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKKjwjOcbLiWGctVrkUVpss5RYet6ynbk",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 }
 
 const firebase = initializeApp(firebaseConfig);
+export const db = getFirestore(firebase);
 
 
 

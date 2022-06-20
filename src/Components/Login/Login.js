@@ -2,14 +2,14 @@ import {React, useState} from "react";
 import Img from "../../Resuorse/LoginBg.jpg";
 import '../../Styles/Login.scss';
 import { NavLink } from "react-router-dom";
-
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword} from "firebase/auth";
 
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMasenge, setError] = useState('')
+    const auth = getAuth();
 
 
     
@@ -18,7 +18,7 @@ const Login = (props) => {
             setEmail(event.target.value)
         } else if (event.target.id == "password") {
             setPassword(event.target.value)
-        }    
+        }  
     }
 
     function onLogin (e) {
@@ -49,6 +49,8 @@ const Login = (props) => {
         }
        
     }
+
+
 
     return(
         <div className="flex-container" >

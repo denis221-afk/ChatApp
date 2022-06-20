@@ -23,3 +23,59 @@ code {
   display: flex;
 }
 
+.Navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatar{
+  background-color: #fff;
+  border-radius: 63px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  cursor: pointer;
+}
+
+.box-item{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.panel-avatar{
+  background-color: #fac451;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.logout{
+  display: none;
+  background: #c4c4c4;
+  position: absolute;
+  top: 77px;
+  right: 0;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.active{
+  display: block;
+}
+
+.panels{
+  border-right: 1px solid #000;
+  width: 300px;
+  height: calc(100vh - 78px);
+
+}
+
+.online-name{
+  span{
+    color: green;
+  }
+}
