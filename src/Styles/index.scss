@@ -61,6 +61,7 @@ code {
   right: 0;
   padding: 10px 20px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .active{
@@ -78,4 +79,73 @@ code {
   span{
     color: green;
   }
+}
+
+
+.footer{
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-top: 1px solid #000;
+  width: calc(100% - 300px);
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  right: 0; 
+    textarea{
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+    button{
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+}
+
+.main__container{
+  position: relative;
+  display: flex;
+}
+
+.chats-window{
+  overflow: scroll;
+  width: calc(100% - 300px);
+  height: calc(100vh - 176px);
+  position: relative;
+}
+
+.masenge_iam{
+  padding: 20px;
+
+  background: rgba(51, 153, 255, 0.377);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.masenge{ 
+    padding: 20px;
+
+    background: #ee395a3d;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+  
+}
+
+.header__masenge{
+  display: flex;
+  align-items: center;
+  margin: 5px;
+
+}
+
+.text{
+  margin-left: 20px;
+  display: block;
+  color: #fff;
 }

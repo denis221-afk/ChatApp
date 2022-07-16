@@ -5,6 +5,7 @@ import { collection, query, where, onSnapshot, doc, updateDoc } from "firebase/f
 import { db } from "../..";
 import OnlineUsers from "../Oline-users/Oline-users.js";
 import { useEffect } from "react";
+import Chat from "../Chat/Chat";
 
 
 
@@ -25,6 +26,9 @@ const Main = (props) => {
              updateDoc(washingtonRef, {
                 online: true
               });
+
+              
+              
         }
         const q =  query(collection(db, "users"));
         const unsubscribe =  onSnapshot(q, (querySnapshot) =>  {
@@ -62,8 +66,11 @@ const Main = (props) => {
     return(
         <div>
             <Navbar  auth={props.auth}/>   
-            <div className="panels">
-             {online}
+            <div class="main__container">
+                <div className="panels">
+                {online}
+                </div>
+                <Chat />
             </div>
         </div>
     )
